@@ -1,4 +1,4 @@
-package com.pias.smartkrishiadmin.activity;
+package com.pias.smartkrishiadmin.agriculture_activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -35,19 +35,15 @@ import java.io.IOException;
 
 public class UploadPDFActivity extends AppCompatActivity {
     private ImageView AddStudentImage;
-    private EditText AddStudentName, AddStudentRoll, AddStudentResult, studentFatherName;
+    private EditText nameET, pdfET;
     private Spinner AddStudentCategory;
     private Button AddStudentBtn;
     private final int REQ = 1;
     private Bitmap bitmap = null;
-
     private String category;
     private ProgressDialog progressDialog;
-
-    private String name, roll, result, father;
-
+    private String name, pdf;
     private String downloadUrl = "";
-
     private StorageReference storageReference;
     private DatabaseReference reference, dbRef;
 
@@ -56,36 +52,34 @@ public class UploadPDFActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_pdfactivity);
 
-        /*student image view*/
+        /*title*/
+        getSupportActionBar().setTitle("কৃষি তথ্য আপলোড করুন");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        /*init views*/
         AddStudentImage = findViewById(R.id.AddStudentImage);
-
-        /*student information*/
-        AddStudentName = findViewById(R.id.AddStudentName);
-        AddStudentRoll = findViewById(R.id.AddStudentRoll);
-        AddStudentResult = findViewById(R.id.AddStudentResult);
-        studentFatherName = findViewById(R.id.studentFatherName);
-
-        /*button & category*/
-        AddStudentBtn = findViewById(R.id.AddStudentBtn);
-        AddStudentCategory = findViewById(R.id.AddStudentCategory);
+        nameET = findViewById(R.id.nameET);
+        pdfET = findViewById(R.id.pdfET);
+        AddStudentBtn = findViewById(R.id.AddBtn);
+        AddStudentCategory = findViewById(R.id.AddCategory);
 
         progressDialog = new ProgressDialog(this);
 
-        // firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("AgricultureInfo");
+
+        /*firebase database path*/
+        reference = FirebaseDatabase.getInstance().getReference().child("agriculture_info");
         storageReference = FirebaseStorage.getInstance().getReference();
 
-
-        String[] items = new String[]{"Select Category", "ফল-মূল চাষ","আলু চাষাবাদ","ধান বিষয়ক", "ছাদে বা টবে চাষ", "শাক-সবজি চাষ", "রোগ বালাই ও প্রতিকার", "ঔষধি গাছ", "ফুল চাষ", "সমন্বিত চাষ", "সম্ভাবনাময় ও অন্যান্য চাষ", "সার বিষয়ক তথ্য"};
+        /*category name*/
+        String[] items = new String[]{"Select Category", "ফল-মূল চাষ", "আলু চাষাবাদ", "ধান বিষয়ক তথ্য", "ছাদে বা টবে চাষ", "শাক-সবজি চাষ", "রোগ বালাই ও প্রতিকার", "ঔষধি গাছ", "ফুল চাষ", "সমন্বিত চাষ", "সম্ভাবনাময় ও অন্যান্য চাষ", "সার বিষয়ক তথ্য"};
         AddStudentCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
-        // eikhane amader change ache AddStudentCategory
 
 
-        AddStudentCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // eikhane change ache AddStudentCategory
+        AddStudentCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                category = AddStudentCategory.getSelectedItem().toString(); // eikhane change ache AddStudentCategory
+                category = AddStudentCategory.getSelectedItem().toString();
             }
 
             @Override
@@ -95,7 +89,7 @@ public class UploadPDFActivity extends AppCompatActivity {
         });
 
 
-        AddStudentImage.setOnClickListener(new View.OnClickListener() { // eikhane Change ache AddStudentImage hobe
+        AddStudentImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
@@ -103,7 +97,7 @@ public class UploadPDFActivity extends AppCompatActivity {
         });
 
 
-        AddStudentBtn.setOnClickListener(new View.OnClickListener() { // eikhane change ache AddStudentBtn
+        AddStudentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkValidation();
@@ -114,26 +108,22 @@ public class UploadPDFActivity extends AppCompatActivity {
 
 
     private void checkValidation() {
-        name = AddStudentName.getText().toString().trim();
-        roll = AddStudentRoll.getText().toString().trim();
-        father = studentFatherName.getText().toString().trim();
-        result = AddStudentResult.getText().toString().trim();
+        /**/
+        name = nameET.getText().toString().trim();
+        pdf = pdfET.getText().toString().trim();
 
         if (name.isEmpty()) {
-            AddStudentName.setError("Empty");
-            AddStudentName.requestFocus();
-        } else if (roll.isEmpty()) {
-            AddStudentRoll.setError("Empty");
-            AddStudentRoll.requestFocus();
-        } else if (result.isEmpty()) {
-            AddStudentResult.setError("Empty");
-            AddStudentResult.requestFocus();
+            nameET.setError("পূরণ করুন");
+            nameET.requestFocus();
+        } else if (pdf.isEmpty()) {
+            pdfET.setError("পূরণ করুন");
+            pdfET.requestFocus();
         } else if (category.equals("Select Category")) {
-            Toast.makeText(this, "Please provides teacher category", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ক্যাটেগরি সিলেক্ট করুন", Toast.LENGTH_SHORT).show();
         } else if (bitmap == null) {
             insertData();
         } else {
-            progressDialog.setMessage("Uploading Details");
+            progressDialog.setMessage("তথ্য আপলোড হচ্ছে");
             progressDialog.show();
             uploadImage();
         }
@@ -147,7 +137,7 @@ public class UploadPDFActivity extends AppCompatActivity {
 
     private void uploadImage() {
 
-        progressDialog.setMessage("Uploading");
+        progressDialog.setMessage("আপলোডিং");
         progressDialog.show();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -155,7 +145,7 @@ public class UploadPDFActivity extends AppCompatActivity {
 
 
         final StorageReference filepath;
-        filepath = storageReference.child("AgricultureInfo").child(finalimage + ".png");
+        filepath = storageReference.child("agriculture_info").child(finalimage + ".png");
         final UploadTask uploadTask = filepath.putBytes(finalimage);
         uploadTask.addOnCompleteListener(UploadPDFActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
             @Override
@@ -175,7 +165,7 @@ public class UploadPDFActivity extends AppCompatActivity {
                     });
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(UploadPDFActivity.this, "Upload Failed", Toast.LENGTH_SHORT).show(); // change AddStudent
+                    Toast.makeText(UploadPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
                 }
             }
         });
@@ -193,7 +183,7 @@ public class UploadPDFActivity extends AppCompatActivity {
 
         // #########################
         // change korte hobe eikhane
-        AgricultureData studentData = new AgricultureData(name, roll, result, father, downloadUrl, uniquekey);
+        AgricultureData studentData = new AgricultureData(name, pdf, downloadUrl, uniquekey);
         dbRef.child(uniquekey).setValue(studentData).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -212,12 +202,13 @@ public class UploadPDFActivity extends AppCompatActivity {
 
 
     // #######################################################################################################
-    // ##################################### Open Gallay Code ###############################################
+    // ##################################### Open Gallery Code ###############################################
     // #####################################################################################################
     private void openGallery() {
 
         Intent pickImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickImage, REQ);
+
     }
 
 
@@ -233,6 +224,7 @@ public class UploadPDFActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             AddStudentImage.setImageBitmap(bitmap);
+            Toast.makeText(this, "ছবি যুক্ত হয়েছে", Toast.LENGTH_SHORT).show();
         }
 
     }

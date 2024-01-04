@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".activity.UploadPDFActivity">
+    tools:context=".agriculture_activity.UploadPDFActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,63 +14,43 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!--Id change hoise eikhane-->
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/AddStudentImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            app:civ_border_width="2dp"
+            android:src="@drawable/logo"
             app:civ_border_color="@color/black"
-            android:src="@drawable/logo" />
+            app:civ_border_width="2dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/tinos_bold"
+            android:fontFamily="@font/gp_font_light_condensed"
             android:text="Upload Image. Tap on image"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!--Input Text for Notice-->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_height="wrap_content">
 
-            <!--Id change Student name-->
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/AddStudentName"
+                android:id="@+id/nameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/kalpurush"
-                android:hint="ছাত্রের নাম"
+                android:hint="কৃষি পণ্যর নাম"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <!--Input Text for teacher emails-->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <!--Id change Student Roll-->
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/AddStudentRoll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kalpurush"
-                android:hint="ছাত্রের রোল"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!--Input Text for teacher emails-->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -79,52 +59,32 @@
 
             <!--Id change Student Roll-->
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/studentFatherName"
+                android:id="@+id/pdfET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kalpurush"
-                android:hint="ছাত্রের পিতার নাম"
+                android:hint="পিডিএফ লিংক"
                 android:inputType="text" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <!--Input Text for Notice-->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <!--Id change Student Result-->
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/AddStudentResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kalpurush"
-                android:hint="ছাত্রের শিক্ষাগত ফলাফল"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <!-- Id change Student category-->
         <Spinner
-            android:id="@+id/AddStudentCategory"
+            android:id="@+id/AddCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:background="@android:drawable/btn_dropdown"
+            android:fontFamily="@font/kalpurush"
             android:gravity="center"
             android:spinnerMode="dropdown" />
 
-
-        <!--Button-->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/AddStudentBtn"
+            android:id="@+id/AddBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/kalpurush"
-            android:text="শিক্ষার্থীর পরিচয় আপলোড করুন"
+            android:text="আপলোড করুন"
             android:textAllCaps="false"
             android:textSize="15sp" />
 

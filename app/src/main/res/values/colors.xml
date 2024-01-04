@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Scanner Color code-->
+    <color name="black_shade">#292D36</color>
+    <color name="yellow_dark">#ffa500</color>
+    <color name="textColor">#292929</color>
+
+    <color name="purple_200">#0F9D58</color>
+    <color name="purple_500">#0F9D58</color>
+    <color name="purple_700">#0F9D58</color>
+    <color name="teal_200">#0F9D58</color>
+    <color name="teal_700">#FF018786</color>
+
 </resources>
