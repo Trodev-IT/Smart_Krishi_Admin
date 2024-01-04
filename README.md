@@ -1,2 +1,2 @@
 # Smart_Krishi_Admin
-Admin Apps
+Smart_Krishi is an agri apps of bangladesh.
