@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "45277040203",
+    "firebase_url": "https://smart-krishi-d26e2-trodevpias-default-rtdb.firebaseio.com",
+    "project_id": "smart-krishi-d26e2-trodevpias",
+    "storage_bucket": "smart-krishi-d26e2-trodevpias.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45277040203:android:56efa570bc1aba782807ce",
+        "android_client_info": {
+          "package_name": "com.pias.smartkrishiadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQB75MOXwAKSNliRmHzsrowCzBW4kS9_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45277040203:android:6972377f9246114c2807ce",
+        "android_client_info": {
+          "package_name": "com.trodev.smartkrishi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQB75MOXwAKSNliRmHzsrowCzBW4kS9_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
