@@ -1,4 +1,4 @@
-package com.pias.smartkrishiadmin.agriculture_activity;
+package com.pias.smartkrishiadmin.AllCultivateAndFarming.agricultureinformation;
 
 public class AgricultureData {
     String name, pdf, image, key;
