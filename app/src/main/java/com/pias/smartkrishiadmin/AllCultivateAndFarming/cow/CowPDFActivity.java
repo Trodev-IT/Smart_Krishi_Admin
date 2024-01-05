@@ -1,4 +1,4 @@
-package com.pias.smartkrishiadmin.agriculture_activity;
+package com.pias.smartkrishiadmin.AllCultivateAndFarming.cow;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,13 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.pias.smartkrishiadmin.AllCultivateAndFarming.agricultureinformation.AgricultureData;
 import com.pias.smartkrishiadmin.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class UploadPDFActivity extends AppCompatActivity {
-    private ImageView AddStudentImage;
+public class CowPDFActivity extends AppCompatActivity {
+    private ImageView AddAgricultureImage;
     private EditText nameET, pdfET;
     private Spinner AddStudentCategory;
     private Button AddStudentBtn;
@@ -50,14 +51,14 @@ public class UploadPDFActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_pdfactivity);
+        setContentView(R.layout.activity_agriculture_pdfactivity);
 
         /*title*/
         getSupportActionBar().setTitle("কৃষি তথ্য আপলোড করুন");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*init views*/
-        AddStudentImage = findViewById(R.id.AddStudentImage);
+        AddAgricultureImage= findViewById(R.id.AddAgricultureImage);
         nameET = findViewById(R.id.nameET);
         pdfET = findViewById(R.id.pdfET);
         AddStudentBtn = findViewById(R.id.AddBtn);
@@ -67,11 +68,11 @@ public class UploadPDFActivity extends AppCompatActivity {
 
 
         /*firebase database path*/
-        reference = FirebaseDatabase.getInstance().getReference().child("agriculture_info");
+        reference = FirebaseDatabase.getInstance().getReference().child("Cow");
         storageReference = FirebaseStorage.getInstance().getReference();
 
         /*category name*/
-        String[] items = new String[]{"Select Category", "ফল-মূল চাষ", "আলু চাষাবাদ", "ধান বিষয়ক তথ্য", "ছাদে বা টবে চাষ", "শাক-সবজি চাষ", "রোগ বালাই ও প্রতিকার", "ঔষধি গাছ", "ফুল চাষ", "সমন্বিত চাষ", "সম্ভাবনাময় ও অন্যান্য চাষ", "সার বিষয়ক তথ্য"};
+        String[] items = new String[]{"Select Category","গবাদিপশু পালন"};
         AddStudentCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
 
 
@@ -89,7 +90,7 @@ public class UploadPDFActivity extends AppCompatActivity {
         });
 
 
-        AddStudentImage.setOnClickListener(new View.OnClickListener() {
+        AddAgricultureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
@@ -145,9 +146,9 @@ public class UploadPDFActivity extends AppCompatActivity {
 
 
         final StorageReference filepath;
-        filepath = storageReference.child("agriculture_info").child(finalimage + ".png");
+        filepath = storageReference.child("Cow").child(finalimage + ".png");
         final UploadTask uploadTask = filepath.putBytes(finalimage);
-        uploadTask.addOnCompleteListener(UploadPDFActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
+        uploadTask.addOnCompleteListener(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -165,7 +166,7 @@ public class UploadPDFActivity extends AppCompatActivity {
                     });
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(UploadPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
+                    Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
                 }
             }
         });
@@ -188,13 +189,13 @@ public class UploadPDFActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 progressDialog.dismiss();
-                Toast.makeText(UploadPDFActivity.this, "সফল ভাবে আপলোড হয়েছে", Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, "সফল ভাবে আপলোড হয়েছে", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(UploadPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -223,7 +224,7 @@ public class UploadPDFActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            AddStudentImage.setImageBitmap(bitmap);
+            AddAgricultureImage.setImageBitmap(bitmap);
             Toast.makeText(this, "ছবি যুক্ত হয়েছে", Toast.LENGTH_SHORT).show();
         }
 

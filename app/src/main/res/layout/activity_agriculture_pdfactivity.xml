@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".agriculture_activity.UploadPDFActivity">
+    tools:context=".AllCultivateAndFarming.agricultureinformation.AgriculturePDFActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:padding="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/AddStudentImage"
+            android:id="@+id/AddAgricultureImage"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -45,6 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:padding="15dp"
+                app:cornerRadius="8dp"
                 android:fontFamily="@font/kalpurush"
                 android:hint="কৃষি পণ্যর নাম"
                 android:inputType="text" />
@@ -62,6 +64,8 @@
                 android:id="@+id/pdfET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="15dp"
+                app:cornerRadius="8dp"
                 android:fontFamily="@font/kalpurush"
                 android:hint="পিডিএফ লিংক"
                 android:inputType="text" />
@@ -73,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
+            android:padding="15dp"
+            app:cornerRadius="8dp"
             android:background="@android:drawable/btn_dropdown"
             android:fontFamily="@font/kalpurush"
             android:gravity="center"
@@ -83,6 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:padding="15dp"
+            app:cornerRadius="8dp"
             android:fontFamily="@font/kalpurush"
             android:text="আপলোড করুন"
             android:textAllCaps="false"
