@@ -54,7 +54,7 @@ public class CowPDFActivity extends AppCompatActivity {
         setContentView(R.layout.activity_agriculture_pdfactivity);
 
         /*title*/
-        getSupportActionBar().setTitle("কৃষি তথ্য আপলোড করুন");
+        getSupportActionBar().setTitle("গবাদি পশুর তথ্য আপলোড করুন");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*init views*/
@@ -72,7 +72,7 @@ public class CowPDFActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         /*category name*/
-        String[] items = new String[]{"Select Category","গবাদিপশু পালন"};
+        String[] items = new String[]{"Select Category","গবাদিপশু পালন", "গাভীর খামার ব্যবস্থাপনা", "গবাদি পশুর কৃত্রিম প্রজনন", "গো-খাদ্য ব্যবস্থাপনা", "রোগ-ব্যাধি ও প্রতিকার"};
         AddStudentCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
 
 
