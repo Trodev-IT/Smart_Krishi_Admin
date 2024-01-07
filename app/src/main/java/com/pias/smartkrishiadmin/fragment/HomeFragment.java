@@ -15,10 +15,11 @@ import com.pias.smartkrishiadmin.AllCultivateAndFarming.agricultureinformation.A
 import com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity;
 import com.pias.smartkrishiadmin.AllCultivateAndFarming.fish.FishPDFActivity;
 import com.pias.smartkrishiadmin.AllCultivateAndFarming.hen.HenPDFActivity;
+import com.pias.smartkrishiadmin.AnotherCultivateAndTechnology.AnotherCultivateActivity;
 import com.pias.smartkrishiadmin.R;
 
 public class HomeFragment extends Fragment {
-    CardView farmer, fish, cow, hen;
+    CardView farmer, fish, cow, hen, anothercultivate;
     public HomeFragment() {
     }
 
@@ -32,6 +33,7 @@ public class HomeFragment extends Fragment {
         fish= view.findViewById(R.id.fish);
         cow= view.findViewById(R.id.cow);
         hen= view.findViewById(R.id.hen);
+        anothercultivate= view.findViewById(R.id.anothercultivate);
 
         farmer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), HenPDFActivity.class));
+            }
+        });
+        anothercultivate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), AnotherCultivateActivity.class));
             }
         });
 
