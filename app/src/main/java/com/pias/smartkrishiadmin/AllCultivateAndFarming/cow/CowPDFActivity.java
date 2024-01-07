@@ -51,7 +51,7 @@ public class CowPDFActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agriculture_pdfactivity);
+        setContentView(R.layout.activity_cow_pdfactivity);
 
         /*title*/
         getSupportActionBar().setTitle("গবাদি পশুর তথ্য আপলোড করুন");
