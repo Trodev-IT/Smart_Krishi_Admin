@@ -1,4 +1,4 @@
-package com.pias.smartkrishiadmin.AllCultivateAndFarming.cow;
+package com.pias.smartkrishiadmin.AllCultivateAndFarming.fish;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -34,7 +34,7 @@ import com.pias.smartkrishiadmin.R;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class CowPDFActivity extends AppCompatActivity {
+public class FishPDFActivity extends AppCompatActivity {
     private ImageView AddAgricultureImage;
     private EditText nameET, pdfET;
     private Spinner AddStudentCategory;
@@ -51,10 +51,10 @@ public class CowPDFActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cow_pdfactivity);
+        setContentView(R.layout.activity_fish_pdfactivity);
 
         /*title*/
-        getSupportActionBar().setTitle("গবাদি পশুর তথ্য আপলোড করুন");
+        getSupportActionBar().setTitle("মাছ চাষের তথ্য আপলোড করুন");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*init views*/
@@ -68,11 +68,11 @@ public class CowPDFActivity extends AppCompatActivity {
 
 
         /*firebase database path*/
-        reference = FirebaseDatabase.getInstance().getReference().child("Cow");
+        reference = FirebaseDatabase.getInstance().getReference().child("Fish");
         storageReference = FirebaseStorage.getInstance().getReference();
 
         /*category name*/
-        String[] items = new String[]{"Select Category","গবাদিপশু পালন", "গাভীর খামার ব্যবস্থাপনা", "গবাদি পশুর কৃত্রিম প্রজনন", "গো-খাদ্য ব্যবস্থাপনা", "রোগ-ব্যাধি ও প্রতিকার"};
+        String[] items = new String[]{"Select Category","দেশীয় মাছ চাষ", "একক ও মিশ্র মাছ চাষ", "পোনা, খাদ্য ও পুকুর ব্যবস্থাপনা", "চিংড়ি চাষ", "মাছ চাষের র্পুনাঙ্গ ব্যবস্থাপত্র", "মাছের রোগব্যাধি ও প্রতিকার", "হ্যাচারী, পোনা ও প্রজনন তথ্য"};
         AddStudentCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
 
 
@@ -146,9 +146,9 @@ public class CowPDFActivity extends AppCompatActivity {
 
 
         final StorageReference filepath;
-        filepath = storageReference.child("Cow").child(finalimage + ".png");
+        filepath = storageReference.child("Fish").child(finalimage + ".png");
         final UploadTask uploadTask = filepath.putBytes(finalimage);
-        uploadTask.addOnCompleteListener(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
+        uploadTask.addOnCompleteListener(com.pias.smartkrishiadmin.AllCultivateAndFarming.fish.FishPDFActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -166,7 +166,7 @@ public class CowPDFActivity extends AppCompatActivity {
                     });
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
+                    Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.fish.FishPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
                 }
             }
         });
@@ -189,13 +189,13 @@ public class CowPDFActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 progressDialog.dismiss();
-                Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, "সফল ভাবে আপলোড হয়েছে", Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.fish.FishPDFActivity.this, "সফল ভাবে আপলোড হয়েছে", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.cow.CowPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.pias.smartkrishiadmin.AllCultivateAndFarming.fish.FishPDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -229,4 +229,6 @@ public class CowPDFActivity extends AppCompatActivity {
         }
 
     }
+
 }
+
