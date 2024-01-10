@@ -36,8 +36,8 @@ import java.io.IOException;
 public class AgriculturePDFActivity extends AppCompatActivity {
     private ImageView AddAgricultureImage;
     private EditText nameET, pdfET;
-    private Spinner AddStudentCategory;
-    private Button AddStudentBtn;
+    private Spinner AddCategory;
+    private Button AddBtn;
     private final int REQ = 1;
     private Bitmap bitmap = null;
     private String category;
@@ -60,11 +60,9 @@ public class AgriculturePDFActivity extends AppCompatActivity {
         AddAgricultureImage= findViewById(R.id.AddAgricultureImage);
         nameET = findViewById(R.id.nameET);
         pdfET = findViewById(R.id.pdfET);
-        AddStudentBtn = findViewById(R.id.AddBtn);
-        AddStudentCategory = findViewById(R.id.AddCategory);
-
+        AddBtn = findViewById(R.id.AddBtn);
+        AddCategory = findViewById(R.id.AddCategory);
         progressDialog = new ProgressDialog(this);
-
 
         /*firebase database path*/
         reference = FirebaseDatabase.getInstance().getReference().child("AgricultureInformation");
@@ -72,41 +70,31 @@ public class AgriculturePDFActivity extends AppCompatActivity {
 
         /*category name*/
         String[] items = new String[]{"Select Category", "ফল-মূল চাষ", "আলু চাষাবাদ", "ধান বিষয়ক তথ্য", "ছাদে বা টবে চাষ", "শাক-সবজি চাষ", "রোগ বালাই ও প্রতিকার", "ঔষধি গাছ", "ফুল চাষ", "সমন্বিত চাষ", "সম্ভাবনাময় ও অন্যান্য চাষ", "সার বিষয়ক তথ্য"};
-        AddStudentCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
-
-
-        AddStudentCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        AddCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
+        AddCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                category = AddStudentCategory.getSelectedItem().toString();
+                category = AddCategory.getSelectedItem().toString();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
         AddAgricultureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
             }
         });
-
-
-        AddStudentBtn.setOnClickListener(new View.OnClickListener() {
+        AddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkValidation();
             }
         });
-
     }
-
-
     private void checkValidation() {
         /**/
         name = nameET.getText().toString().trim();
@@ -127,23 +115,16 @@ public class AgriculturePDFActivity extends AppCompatActivity {
             progressDialog.show();
             uploadImage();
         }
-
     }
-
-
     // #######################################################################################################
     // ##################################### Upload image Code ###############################################
     // #####################################################################################################
-
     private void uploadImage() {
-
         progressDialog.setMessage("আপলোডিং");
         progressDialog.show();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] finalimage = baos.toByteArray();
-
-
         final StorageReference filepath;
         filepath = storageReference.child("AgricultureInformation").child(finalimage + ".png");
         final UploadTask uploadTask = filepath.putBytes(finalimage);
@@ -170,12 +151,9 @@ public class AgriculturePDFActivity extends AppCompatActivity {
             }
         });
     }
-
-
     // #######################################################################################################
     // ##################################### Insert Data Code ###############################################
     // #####################################################################################################
-
     private void insertData() {
         // amader eikhane edittext theke data amra database e soriye dissi
         dbRef = reference.child(category); // dont change this
@@ -199,8 +177,6 @@ public class AgriculturePDFActivity extends AppCompatActivity {
         });
 
     }
-
-
     // #######################################################################################################
     // ##################################### Open Gallery Code ###############################################
     // #####################################################################################################
@@ -208,10 +184,7 @@ public class AgriculturePDFActivity extends AppCompatActivity {
 
         Intent pickImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickImage, REQ);
-
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -5,14 +5,12 @@ public class AgricultureData {
 
     public AgricultureData() {
     }
-
     public AgricultureData(String name, String pdf, String image, String key) {
         this.name = name;
         this.pdf = pdf;
         this.image = image;
         this.key = key;
     }
-
     public String getName() {
         return name;
     }

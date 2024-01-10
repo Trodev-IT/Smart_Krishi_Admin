@@ -48,7 +48,7 @@
                 android:padding="15dp"
                 app:cornerRadius="8dp"
                 android:fontFamily="@font/kalpurush"
-                android:hint="কৃষি পণ্যর নাম"
+                android:hint="পিডিএফ টাইটেলের নাম"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,6 +91,8 @@
             android:layout_marginTop="16dp"
             android:padding="15dp"
             app:cornerRadius="8dp"
+            android:gravity="center"
+            android:textColor="@color/white"
             android:fontFamily="@font/kalpurush"
             android:text="আপলোড করুন"
             android:textAllCaps="false"
