@@ -27,21 +27,25 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".AllCultivateAndFarming.hen.HenPDFActivity"
+            android:name=".AnotherCultivateAndTechnology.AnotherCultivateActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".AllCultivateAndFarming.hen.HenPDFActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AllCultivateAndFarming.fish.FishPDFActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AllCultivateAndFarming.cow.CowPDFActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AllCultivateAndFarming.agricultureinformation.AgriculturePDFActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,16 +1,18 @@
-package com.pias.smartkrishiadmin.AllCultivateAndFarming.agricultureinformation;
+package com.pias.smartkrishiadmin.AnotherCultivateAndTechnology;
 
-public class AgricultureData {
+public class AnotherCultivateData {
     String name, pdf, image, key;
 
-    public AgricultureData() {
+    public AnotherCultivateData() {
     }
-    public AgricultureData(String name, String pdf, String image, String key) {
+
+    public AnotherCultivateData(String name, String pdf, String image, String key) {
         this.name = name;
         this.pdf = pdf;
         this.image = image;
         this.key = key;
     }
+
     public String getName() {
         return name;
     }

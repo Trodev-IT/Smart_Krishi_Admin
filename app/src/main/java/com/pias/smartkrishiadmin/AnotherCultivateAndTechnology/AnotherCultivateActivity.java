@@ -1,4 +1,8 @@
-package com.pias.smartkrishiadmin.AllCultivateAndFarming.agricultureinformation;
+package com.pias.smartkrishiadmin.AnotherCultivateAndTechnology;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,10 +19,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,12 +28,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.pias.smartkrishiadmin.AllCultivateAndFarming.agricultureinformation.AgricultureData;
 import com.pias.smartkrishiadmin.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class AgriculturePDFActivity extends AppCompatActivity {
+public class AnotherCultivateActivity extends AppCompatActivity {
     private ImageView AddAgricultureImage;
     private EditText nameET, pdfET;
     private Spinner AddCategory;
@@ -46,14 +47,13 @@ public class AgriculturePDFActivity extends AppCompatActivity {
     private String downloadUrl = "";
     private StorageReference storageReference;
     private DatabaseReference reference, dbRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agriculture_pdfactivity);
+        setContentView(R.layout.activity_another_cultivate);
 
         /*title*/
-        getSupportActionBar().setTitle("কৃষি তথ্য আপলোড করুন");
+        getSupportActionBar().setTitle("অন্যান্য চাষাবাদ ও আধুনিক প্রযুক্তি");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*init views*/
@@ -65,11 +65,11 @@ public class AgriculturePDFActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         /*firebase database path*/
-        reference = FirebaseDatabase.getInstance().getReference().child("AgricultureInformation");
+        reference = FirebaseDatabase.getInstance().getReference().child("AnotherCultivateAndTechnology");
         storageReference = FirebaseStorage.getInstance().getReference();
 
         /*category name*/
-        String[] items = new String[]{"Select Category", "ফল-মূল চাষ", "আলু চাষাবাদ", "ধান বিষয়ক তথ্য", "ছাদে বা টবে চাষ", "শাক-সবজি চাষ", "রোগ বালাই ও প্রতিকার", "ঔষধি গাছ", "ফুল চাষ", "সমন্বিত চাষ", "সম্ভাবনাময় ও অন্যান্য চাষ", "সার বিষয়ক তথ্য"};
+        String[] items = new String[]{"Select Category","স্বাস্থ্য বটিকা", "ব্যবসা বানিজ্য", "কৃষি উপকরণ ও প্রযুক্তি", "সফলদের সাফল্য গাথাঁ", "কৃষি ও পরিবেশ বিষয়ক প্রতিবেদন", "ভিন্ন খবর"};
         AddCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
         AddCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -116,6 +116,7 @@ public class AgriculturePDFActivity extends AppCompatActivity {
             uploadImage();
         }
     }
+
     // #######################################################################################################
     // ##################################### Upload image Code ###############################################
     // #####################################################################################################
@@ -126,9 +127,9 @@ public class AgriculturePDFActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] finalimage = baos.toByteArray();
         final StorageReference filepath;
-        filepath = storageReference.child("AgricultureInformation").child(finalimage + ".png");
+        filepath = storageReference.child("AnotherCultivateAndTechnology").child(finalimage + ".png");
         final UploadTask uploadTask = filepath.putBytes(finalimage);
-        uploadTask.addOnCompleteListener(AgriculturePDFActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
+        uploadTask.addOnCompleteListener(AnotherCultivateActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() { // change AddStudent
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -146,11 +147,12 @@ public class AgriculturePDFActivity extends AppCompatActivity {
                     });
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(AgriculturePDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
+                    Toast.makeText(AnotherCultivateActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show(); // change AddStudent
                 }
             }
         });
     }
+
     // #######################################################################################################
     // ##################################### Insert Data Code ###############################################
     // #####################################################################################################
@@ -166,17 +168,17 @@ public class AgriculturePDFActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 progressDialog.dismiss();
-                Toast.makeText(AgriculturePDFActivity.this, "সফল ভাবে আপলোড হয়েছে", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AnotherCultivateActivity.this, "সফল ভাবে আপলোড হয়েছে", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(AgriculturePDFActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AnotherCultivateActivity.this, "আপলোড সফল হয়নি", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
     // #######################################################################################################
     // ##################################### Open Gallery Code ###############################################
     // #####################################################################################################
@@ -199,6 +201,5 @@ public class AgriculturePDFActivity extends AppCompatActivity {
             AddAgricultureImage.setImageBitmap(bitmap);
             Toast.makeText(this, "ছবি যুক্ত হয়েছে", Toast.LENGTH_SHORT).show();
         }
-
     }
 }
