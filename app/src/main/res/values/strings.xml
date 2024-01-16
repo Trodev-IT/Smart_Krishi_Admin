@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">SmartKrishi Admin</string>
+    <string name="app_name">Admin SmartKrishi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <string name="start">Open</string>
     <string name="close">Close</string>
